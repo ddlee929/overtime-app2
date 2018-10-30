@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "creation" do 
     before do
-      @user = User.create(email: "test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "Jon", last_name: "Snow")
+      @user = FactoryBot.create(:user)
     end
 
     it "can be created" do
@@ -15,5 +14,4 @@ RSpec.describe User, type: :model do
       @user.last_name = nil
       expect(@user).to_not be_valid
     end
-  end
 end
