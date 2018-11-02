@@ -15,9 +15,9 @@ Email summary to managers for approval
 Needs to be documented if employee did not log overtime
 
 ## UI:
--Bootstrap -> formatting
+-x Bootstrap -> formatting
 - Icons from Font Awesome
-- Update teh styles for forms
+-x Update teh styles for forms
 
 ## Refactor TODOS:
 - Add full_name method for users
