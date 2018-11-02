@@ -38,3 +38,4 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'execjs', '~> 2.7'
 gem 'therubyracer', :platforms => :ruby
 gem 'rubocop-rspec', '~> 1.30'
+gem 'gritter', '~> 1.2'
