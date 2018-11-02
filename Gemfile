@@ -39,3 +39,5 @@ gem 'execjs', '~> 2.7'
 gem 'therubyracer', :platforms => :ruby
 gem 'rubocop-rspec', '~> 1.30'
 gem 'gritter', '~> 1.2'
+gem 'bourbon', '~> 5.1'
+gem 'administrate', '~> 0.11.0'
