@@ -21,5 +21,5 @@ Needs to be documented if employee did not log overtime
 -x Update teh styles for forms
 
 ## Refactor TODOS:
-- Add full_name method for users
 - Refactor user association integration test in post_spec# overtime-app2
+- Refactor posts/_form for admin user with status
