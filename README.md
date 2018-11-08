@@ -23,3 +23,4 @@ Needs to be documented if employee did not log overtime
 ## Refactor TODOS:
 - Refactor user association integration test in post_spec# overtime-app2
 - Refactor posts/_form for admin user with status
+- Fix post_spec.rb:82 to use factories

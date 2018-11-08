@@ -8,7 +8,7 @@ describe 'navigate' do
 
   describe 'index' do
     before do
-      visits post_path
+      visit posts_path
     end
 
     it 'can be reached successfully' do
@@ -22,17 +22,18 @@ describe 'navigate' do
     it 'has a list of posts' do
       post1 = FactoryBot.build_stubbed(:post)
       post2 = FactoryBot.build_stubbed(:second_post)
-      visits posts_path
+      visit posts_path
       expect(page).to have_content(/Rationale|content/)
     end
   end
 
   describe 'new' do
     it 'has a link from the homepage' do
-    visit root_path
+      visit root_path
 
-    click_link("new_post_from_nav")
-    expect(page.status_code).to eq(200)
+      click_link("new_post_from_nav")
+      expect(page.status_code).to eq(200)
+    end
   end
 
   describe 'delete' do
@@ -46,7 +47,7 @@ describe 'navigate' do
   end
 
   describe 'creation' do
-    before do 
+    before do
       visit new_post_path
     end
 
@@ -62,7 +63,7 @@ describe 'navigate' do
       expect(page).to have_content("Some rationale")
     end
 
-    it 'will have a user associated with it' do
+    it 'will have a user associated it' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "User Association"
       click_on "Save"
@@ -72,20 +73,14 @@ describe 'navigate' do
   end
 
   describe 'edit' do
-    before do 
-      @post = FactoryBot.create(:post)
-    end
-
-    it 'can be reached by clicking edit on index page' do
-      post = FactoryBot.create(:post)
-      visit posts_path
-
-      click_link("edit_#{@post.id}")
-      expect(page.status_code).to eq(200)
+    before do
+      @edit_user = User.create(first_name: "asdf", last_name: "asdf", email: "asdfasdf@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
+      login_as(@edit_user, :scope => :user)
+      @edit_post = Post.create(date: Date.today, rationale: "asdf", user_id: @edit_user.id)
     end
 
     it 'can be edited' do
-      visit edit_post_path(@post)
+      visit edit_post_path(@edit_post)
 
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: "Edited content"
@@ -93,5 +88,15 @@ describe 'navigate' do
 
       expect(page).to have_content("Edited content")
     end
-  end 
+
+    it 'cannot be edited by a non authorized user' do
+      logout(:user)
+      non_authorized_user = FactoryBot.create(:non_authorized_user)
+      login_as(non_authorized_user, :scope => :user)
+
+      visit edit_post_path(@edit_post)
+
+      expect(current_path).to eq(root_path)
+    end
+  end
 end
