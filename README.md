@@ -6,6 +6,7 @@
 - x Post -> date:date rationale:text
 - x User -> Devise
 - x AdminUser -> STI
+- AuditLog
 
 ## Features:
 Approval Workflow
@@ -17,8 +18,8 @@ Needs to be documented if employee did not log overtime
 
 ## UI:
 -x Bootstrap -> formatting
-- Icons from Font Awesome
+-x Icons from glyphicons
 -x Update teh styles for forms
 
 ## Refactor TODOS:
-- Refactor posts/_form for admin user with status
+- x Refactor posts/_form for admin user with status
