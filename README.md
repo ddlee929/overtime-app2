@@ -21,5 +21,7 @@ Needs to be documented if employee did not log overtime
 -x Icons from glyphicons
 -x Update teh styles for forms
 
-## Refactor TODOS:
-- x Refactor posts/_form for admin user with status
+## TODOS:
+- Integrate validation for phone attr in User:
+	#No spaces or....
+
