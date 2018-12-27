@@ -103,7 +103,7 @@
     return missing;
   }
 
-  $('a[data-confirm], a[data-method], a[data-remote]').on('click.rails', function(e) {
+  $('a[data-confirm], a[data-method], a[data-remote]').live('click.rails', function(e) {
     var link = $(this);
     if (!allowAction(link)) return false;
 
@@ -116,7 +116,7 @@
     }
   });
 
-  $('form').on('submit.rails', function(e) {
+  $('form').live('submit.rails', function(e) {
     var form = $(this), remote = form.attr('data-remote') != undefined;
     if (!allowAction(form)) return false;
 
@@ -140,11 +140,11 @@
     button.closest('form').data('ujs:submit-button', data);
   });
 
-  $('form').on('ajax:beforeSend.rails', function(event) {
+  $('form').live('ajax:beforeSend.rails', function(event) {
     if (this == event.target) disableFormElements($(this));
   });
 
-  $('form').on('ajax:complete.rails', function(event) {
+  $('form').live('ajax:complete.rails', function(event) {
     if (this == event.target) enableFormElements($(this));
   });
 })( jQuery );
