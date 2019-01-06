@@ -103,20 +103,53 @@
     return missing;
   }
 
-  $('a[data-confirm], a[data-method], a[data-remote]').live('click.rails', function(e) {
-    var link = $(this);
-    if (!allowAction(link)) return false;
 
-    if (link.attr('data-remote') != undefined) {
-      handleRemote(link);
-      return false;
-    } else if (link.attr('data-method')) {
-      handleMethod(link);
-      return false;
-    }
+  $(function  () {
+      $(document).on('click', function(e) {
+      var link = $(this);
+      if (!allowAction(link)) return false;
+
+      if (link.attr('data-remote') != undefined) {
+        handleRemote(link);
+        return false;
+      } else if (link.attr('data-method')) {
+        handleMethod(link);
+        return false;
+      }
+    });
   });
 
-  $('form').live('submit.rails', function(e) {
+
+  // $('a[data-confirm], a[data-method], a[data-remote]').live('click.rails', function(e) {
+  //   var link = $(this);
+  //   if (!allowAction(link)) return false;
+
+  //   if (link.attr('data-remote') != undefined) {
+  //     handleRemote(link);
+  //     return false;
+  //   } else if (link.attr('data-method')) {
+  //     handleMethod(link);
+  //     return false;
+  //   }
+  // });
+
+  // $('form').live('submit.rails', function(e) {
+  //   var form = $(this), remote = form.attr('data-remote') != undefined;
+  //   if (!allowAction(form)) return false;
+
+  //   // skip other logic when required values are missing
+  //   if (requiredValuesMissing(form)) return !remote;
+
+  //   if (remote) {
+  //     handleRemote(form);
+  //     return false;
+  //   } else {
+  //     // slight timeout so that the submit button gets properly serialized
+  //     setTimeout(function(){ disableFormElements(form) }, 13);
+  //   }
+  // });
+  $(function  () {
+      $(document).on('click', function(e) {
     var form = $(this), remote = form.attr('data-remote') != undefined;
     if (!allowAction(form)) return false;
 
@@ -131,20 +164,43 @@
       setTimeout(function(){ disableFormElements(form) }, 13);
     }
   });
+  });
 
-  $('form input[type=submit], form button[type=submit], form button:not([type])').live('click.rails', function() {
+  //   $('form input[type=submit], form button[type=submit], form button:not([type])').live('click.rails', function() {
+  //   var button = $(this);
+  //   if (!allowAction(button)) return false;
+  //   // register the pressed submit button
+  //   var name = button.attr('name'), data = name ? {name:name, value:button.val()} : null;
+  //   button.closest('form').data('ujs:submit-button', data);
+  // });
+
+  // $('form').live('ajax:beforeSend.rails', function(event) {
+  //   if (this == event.target) disableFormElements($(this));
+  // });
+
+  // $('form').live('ajax:complete.rails', function(event) {
+  //   if (this == event.target) enableFormElements($(this));
+  // });
+
+  $(function  () {
+      $(document).on('click', function() {
     var button = $(this);
     if (!allowAction(button)) return false;
     // register the pressed submit button
     var name = button.attr('name'), data = name ? {name:name, value:button.val()} : null;
     button.closest('form').data('ujs:submit-button', data);
   });
+  });
 
-  $('form').live('ajax:beforeSend.rails', function(event) {
+ $(function  () {
+      $(document).on('ajax:beforeSend.rails', function(event) {
     if (this == event.target) disableFormElements($(this));
   });
+    });
 
-  $('form').live('ajax:complete.rails', function(event) {
+  $(function  () {
+      $(document).on('ajax:complete.rails', function(event) {
     if (this == event.target) enableFormElements($(this));
   });
+    });
 })( jQuery );
