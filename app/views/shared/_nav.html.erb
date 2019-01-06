@@ -15,11 +15,11 @@
 
 
     <li class="dropdown pull-right">
-       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
+       <a href="#" data-toggle="dropdown" type='button' class="btn btn-success dropdown-toggle">Options<strong class="caret"></strong></a>
       <ul class="dropdown-menu">
-        
-        <%= render 'shared/admin_dropdown' if admin? %>
-
+        <li>
+          <%= render 'shared/admin_dropdown' if admin? %>
+        </li>
         <li>
           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         </li>
@@ -27,3 +27,4 @@
     </li>
   </ul>
 <% end %>
+
