@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="Scripts/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="Scripts/bootstrap.min.js"></script>
 <div class='logo'>
 
   <h1>Time Tracker</h1>
@@ -19,7 +21,7 @@
 
     <li class="dropdown pull-right">
        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
         <li>
           <%= render 'shared/admin_dropdown' if admin? %>
         </li>
@@ -30,4 +32,10 @@
     </li>
   </ul>
 <% end %>
+
+<script>
+$(document).ready( function() {
+$('.dropdown-toggle').dropdown();
+});
+</script>
 
